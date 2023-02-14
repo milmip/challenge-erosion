@@ -1,6 +1,6 @@
 import unittest
 
-from utils import *
+from utils import img2ascii, load_pbm
 
 img = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -15,19 +15,19 @@ img = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
-tests = [
+tests_string = [
     (img, None, None, '..........\n..######..\n.##....##.\n.#......#.\n.#......#.\n.#......#.\n.#......#.\n.##....##.\n..######..\n..........'),
     (img, 'O', ' ', '          \n  OOOOOO  \n OO    OO \n O      O \n O      O \n O      O \n O      O \n OO    OO \n  OOOOOO  \n          '),
 
 ]
 
-class MyTests(unittest.TestCase):
+class TestString(unittest.TestCase):
 
     def test_1(self):
-        for img, black, white, expected in tests:
+        for img, black, white, expected in tests_string:
             black = black or '#'
             white = white or '.'
-            result = img2ascii(img, black, white)
+            result = img2ascii(img, white, black)
             self.assertEqual(result, expected)
 
 tests_load = [
