@@ -41,21 +41,24 @@ def erosion(img, n):
 
     width = len(img[0])
     height = len(img)
-
-    new_img = [[0]*width]*height
     
-    for i in range(height) :
-        for j in range(width):
-            if i ==  0 or i == height - 1 or j == 0 or j == width - 1:
-                #print(i,j, 'mort')
-                continue
-            
-            if img[i+1][j] and img[i][j+1] and img[i-1][j] and img[i][j-1]:
-                new_img[i][j] = 1
+    def iter():
+        new_img = [[0 for i in range(width)] for j in range(height)]
 
+        for i in range(height) :
+            for j in range(width):
+                if i ==  0 or i == height - 1 or j == 0 or j == width - 1:
+                    continue
+
+                if img[i+1][j] and img[i][j+1] and img[i-1][j] and img[i][j-1]:
+                    new_img[i][j] = 1
+        return new_img
     
-    return new_img
+    for _ in range(n):
+        img = iter()
+    
+    return img
 
 
 
-print(img2ascii(erosion(load_pbm('cross.pbm'), 0)))
+print(img2ascii(erosion(load_pbm('cross.pbm'), 3)))
