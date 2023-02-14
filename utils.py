@@ -58,7 +58,3 @@ def erosion(img, n):
         img = iter()
     
     return img
-
-
-
-print(img2ascii(erosion(load_pbm('cross.pbm'), 3)))
